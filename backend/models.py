@@ -4,7 +4,7 @@ from datetime import date
 
 
 class Stock(models.Model):
-    ISIN = models.CharField(max_length=14)
+    ISIN = models.CharField(max_length=14, unique=True)
     date = models.DateTimeField(date)
     stock_exchange = models.CharField(max_length=15)
     stock_currency = models.CharField(max_length=3)
@@ -13,7 +13,7 @@ class Stock(models.Model):
 
 
 class Fund(models.Model):
-    ISIN = models.CharField(max_length=14)
+    ISIN = models.CharField(max_length=14, unique=True)
     fund_name = models.CharField(max_length=50)
     fund_country = models.CharField(max_length=3)
     fund_type = models.CharField(max_length=30)

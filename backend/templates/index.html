@@ -2,11 +2,12 @@
 {% block body %}
   <div class="m-3">
     <div class="card-deck">
+      {% for stock in all_stocks %}
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title"></h5>
+          <h5 class="card-title">ISIN: {{ stock.ISIN }}</h5>
           <p class="card-text">
-
+            {{  }}
           </p>
         </div>
         <div class="card-footer">
@@ -15,19 +16,7 @@
           </p>
         </div>
       </div>
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title"></h5>
-          <p class="card-text">
-
-          </p>
-        </div>
-        <div class="card-footer">
-          <p class="card-text">
-
-          </p>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 
