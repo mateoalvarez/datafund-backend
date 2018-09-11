@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="icon" href="../static/img/favicon.ico">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <!-- jQuery library -->
@@ -10,13 +9,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <!-- Import css -->
     {% block head %}{% endblock head %}
   </head>
 
   <body>
-    {% block navbar %}{% endblock navbar %}
+    {% block navbar %}
+      {% include "navbar.html" %}
+    {% endblock navbar %}
     {% block body %}{% endblock body %}
-    {% block footer %}{% endblock footer %}
+    {% block footer %}
+      {% include "footer.html" %}
+    {% endblock footer %}
   </body>
   {% block afterbody %}{% endblock afterbody %}
 </html>
