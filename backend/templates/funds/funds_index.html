@@ -1,28 +1,28 @@
 {% extends "base.html" %}
 {% block body %}
 <div class="container">
-  {% for unique_snapshot in unique_snapshots %}
+  {% for funds_snapshots, unique_snapshot in list_of_funds_snapshots, unique_snapshots %}
     <div class="container">
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Fund Id</th>
+            <th scope="col">Date</th>
+            <th scope="col">Value</th>
+            <th scope="col">Comment</th>
           </tr>
         </thead>
       </table>
-      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="collapse-{{ unique_snapshot.id }}"></button>
-      <div class="collapse" id="collapse-{{ unique_snapshot.id }}">
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="collapse-{{ unique_snapshot }}"></button>
+      <div class="collapse" id="collapse-{{ unique_snapshot }}">
         <table class="table">
           <tbody>
-            {% for fund in funds_first_ten %}
+            {% for fund in funds_snapshots %}
             <tr>
-              <th scope="row">{{ fund.id }}</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <th scope="row">{{ fund.fund }}</th>
+              <td>{{ fund.date }}</td>
+              <td>{{ fund.fund_snapshot_value }}</td>
+              <td>{{ fund.fund_snapshot_comment }}</td>
             </tr>
             {% endfor %}
           </tbody>

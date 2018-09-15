@@ -1,17 +1,17 @@
 from django.shortcuts import render
 from itertools import groupby
-from ..models import StockSnapshot
+from ..models import FundSnapshot
 # from ..models import Stock
 
 
 def index(request):
-    stocks_snapshots = StockSnapshot.objects.all().order_by('date')
-    list_of_stocks_snapshots = \
-        [list(g) for t, g in groupby(stocks_snapshots, key=extract_date)]
-    unique_snapshots = StockSnapshot.objects\
+    fund_snapshots = FundSnapshot.objects.all().order_by('date')
+    list_of_funds_snapshots = \
+        [list(g) for t, g in groupby(fund_snapshots, key=extract_date)]
+    unique_snapshots = FundSnapshot.objects\
         .order_by().values('date').distinct()
     return render(request, 'funds/funds_index.html', {
-        'list_of_stocks_snapshots': list_of_stocks_snapshots,
+        'list_of_funds_snapshots': list_of_funds_snapshots,
         'unique_snapshots': unique_snapshots
         })
 
