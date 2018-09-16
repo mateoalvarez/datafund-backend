@@ -9,7 +9,6 @@ def index(request):
     list_of_funds_snapshots = \
         [list(g) for t, g in groupby(fund_snapshots, key=extract_date)]
     iterator = count()
-    # print(list_of_funds_snapshots[0][0].fund.ISIN)
     return render(request, 'funds/funds_index.html', {
         'list_of_funds_snapshots': list_of_funds_snapshots,
         'iterator': iterator
