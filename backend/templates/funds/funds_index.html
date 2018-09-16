@@ -1,33 +1,36 @@
 {% extends "base.html" %}
+{% load custom_filters %}
 {% block body %}
 <div class="container">
-  {% for unique_snapshot in unique_snapshots %}
+  {% for funds_snapshots in list_of_funds_snapshots %}
     <div class="container">
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Fund Id</th>
+            <th scope="col">Date</th>
+            <th scope="col">Value</th>
+            <th scope="col">Comment</th>
           </tr>
         </thead>
       </table>
-      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="collapse-{{ unique_snapshot.id }}"></button>
-      <div class="collapse" id="collapse-{{ unique_snapshot.id }}">
-        <table class="table">
-          <tbody>
-            {% for fund in funds_first_ten %}
-            <tr>
-              <th scope="row">{{ fund.id }}</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+      {% with  iterator_value=iterator|next_value %}
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="collapse-{{ iterator_value }}">Show</button>
+        <div class="collapse" id="collapse-{{ iterator_value }}">
+          <table class="table">
+            <tbody>
+              {% for fund_snapshot in funds_snapshots %}
+              <tr>
+                <th scope="row">{{ fund_snapshot.fund.ISIN }}</th>
+                <td>{{ fund_snapshot.date }}</td>
+                <td>{{ fund_snapshot.fund_snapshot_value }}</td>
+                <td>{{ fund_snapshot.fund_snapshot_comment }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endwith %}
     </div>
   {% endfor %}
 </div>
